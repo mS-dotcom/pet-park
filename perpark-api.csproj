@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>perpark_api</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.8">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="QRCoder" Version="1.4.3" />
+    <PackageReference Include="BarCode" Version="2023.8.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Models\" />
+    <None Remove="Models\Contexts\" />
+    <None Remove="Models\Entities\" />
+    <None Remove="QRCodes\" />
+    <None Remove="DevelopmentClasses\" />
+    <None Remove="AdvertImages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Models\Contexts\" />
+    <Folder Include="Models\Entities\" />
+    <Folder Include="QRCodes\" />
+    <Folder Include="wwwroot\" />
+    <Folder Include="DevelopmentClasses\" />
+    <Folder Include="AdvertImages\" />
+    <Folder Include="wwwroot\AdvertImages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\" />
+    <Content Remove="wwwroot\AdvertImages\" />
+    <Content Remove="wwwroot\GeneratedQRCode\GeneratedQRCode\Kara Kabuk&amp;0&amp;6&amp;4.png" />
+  </ItemGroup>
+</Project>
