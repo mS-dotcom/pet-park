@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "Hash": "bHXmPPPlUzHXq40vIty5TPjZ/JjeOyzHfSR8DRKqajA=",
+  "Source": "perpark-api",
+  "BasePath": "_content/perpark-api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "perpark-api/wwwroot",
+      "Source": "perpark-api",
+      "ContentRoot": "/Users/muhammedseker/Projects/petpark/perpark-api/wwwroot/",
+      "BasePath": "_content/perpark-api",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/muhammedseker/Projects/petpark/perpark-api/wwwroot/.DS_Store",
+      "SourceId": "perpark-api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/muhammedseker/Projects/petpark/perpark-api/wwwroot/",
+      "BasePath": "_content/perpark-api",
+      "RelativePath": ".DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/.DS_Store"
+    },
+    {
+      "Identity": "/Users/muhammedseker/Projects/petpark/perpark-api/wwwroot/AdvertImages/1_80_pppp.png",
+      "SourceId": "perpark-api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/muhammedseker/Projects/petpark/perpark-api/wwwroot/",
+      "BasePath": "_content/perpark-api",
+      "RelativePath": "AdvertImages/1_80_pppp.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/AdvertImages/1_80_pppp.png"
+    },
+    {
+      "Identity": "/Users/muhammedseker/Projects/petpark/perpark-api/wwwroot/GeneratedQRCode/.DS_Store",
+      "SourceId": "perpark-api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/muhammedseker/Projects/petpark/perpark-api/wwwroot/",
+      "BasePath": "_content/perpark-api",
+      "RelativePath": "GeneratedQRCode/.DS_Store",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/GeneratedQRCode/.DS_Store"
+    },
+    {
+      "Identity": "/Users/muhammedseker/Projects/petpark/perpark-api/wwwroot/GeneratedQRCode/Kara Kabuk&0&6&4.png",
+      "SourceId": "perpark-api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/muhammedseker/Projects/petpark/perpark-api/wwwroot/",
+      "BasePath": "_content/perpark-api",
+      "RelativePath": "GeneratedQRCode/Kara Kabuk&0&6&4.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/GeneratedQRCode/Kara Kabuk&0&6&4.png"
+    }
+  ]
+}
