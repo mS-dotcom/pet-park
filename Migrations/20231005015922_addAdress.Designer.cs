@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using perpark_api.Models;
 
@@ -11,9 +12,11 @@ using perpark_api.Models;
 namespace perpark_api.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20231005015922_addAdress")]
+    partial class addAdress
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,12 +55,6 @@ namespace perpark_api.Migrations
 
                     b.Property<int>("DistrictId")
                         .HasColumnType("int");
-
-                    b.Property<bool?>("IsPrimary")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("LastDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -157,35 +154,6 @@ namespace perpark_api.Migrations
                     b.HasKey("AnimalWalkerId");
 
                     b.ToTable("AnimalWalkers");
-                });
-
-            modelBuilder.Entity("perpark_api.Models.Entities.ChatMessages", b =>
-                {
-                    b.Property<int>("MessageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageId"));
-
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ReceiverId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RoomId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SenderId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MessageId");
-
-                    b.ToTable("ChatMessages");
                 });
 
             modelBuilder.Entity("perpark_api.Models.Entities.City", b =>
@@ -328,6 +296,7 @@ namespace perpark_api.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LogDescription")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LogType")
@@ -520,24 +489,6 @@ namespace perpark_api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FileLocation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("HasClinicPinned")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("HasFileSend")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("HasPayment")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("IsPrimary")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("LastDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Lat")
                         .HasColumnType("nvarchar(max)");
 
@@ -599,9 +550,6 @@ namespace perpark_api.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Token")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UserTypeId")
