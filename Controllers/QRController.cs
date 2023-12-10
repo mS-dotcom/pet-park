@@ -79,22 +79,29 @@ public class QRController : ControllerBase
     }
 
     [HttpPost("ReadQR")]
-    public async Task<IActionResult> ReadQR(ReadQRVM qrVM)
+    public IActionResult ReadQR(ReadQRVM qrVM)
     {
         try
         {
-            string[] values = new string[4];
-            values = qrVM.qrCode.Split('&');
+            
 
-            var findAnimal = _db.Animals.FirstOrDefault(x => x.Name == values[0].ToString() && x.AnimalTypeId == Int32.Parse(values[1].ToString()) && x.AnimalId == Int32.Parse(values[2].ToString()) && x.UserId == Int32.Parse(values[3].ToString()));
+            var findAnimal = _db.Animals.FirstOrDefault(x=>x.QRCode==qrVM.qrCode);
             findAnimal.VeterinaryId = qrVM.VeterinaryId;
             var sickness = _db.Sickess.Where(x => x.AnimalId == findAnimal.AnimalId).ToList();
             var vacciness = _db.Vaccines.Where(x => x.AnimalId == findAnimal.AnimalId).ToList();
+            
             AnimalDetailVM animal = new AnimalDetailVM();
             animal.Animal = findAnimal;
             animal.Vaccines = vacciness;
             animal.Sickness = sickness;
+            var vet = _db.Veterinary.FirstOrDefault(x => x.VeteniaryId == qrVM.VeterinaryId);
+            
+            animal.VeterinaryAccount = vet;
+            var animalUser = _db.Users.FirstOrDefault(x => x.UserId == findAnimal.UserId);
+            animal.UserAccount = animalUser;
 
+
+            _db.SaveChanges();
             return Ok(animal);
         }
         catch (Exception ex)
@@ -107,11 +114,6 @@ public class QRController : ControllerBase
             _db.SaveChanges();
             return BadRequest(ex);
         }
-     
-
-
-
-        
     }
 }
 

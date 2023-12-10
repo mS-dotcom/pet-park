@@ -86,12 +86,12 @@ public class ComingController : ControllerBase
         {
             if (vm.DistrictId != 0 && vm.DistrictId != null)
             {
-                var model = _db.Users.Where(x => x.CityId == vm.CityId && x.DistrictId == vm.DistrictId&&x.UserTypeId==3).ToList();
+                var model = _db.AnimalWalkers.Where(x => x.CityId == vm.CityId && x.DistrictId == vm.DistrictId).ToList();
                 return Ok(model);
             }
             else
             {
-                var model = _db.Users.Where(x => x.CityId == vm.CityId && x.UserTypeId == 3).ToList();
+                var model = _db.AnimalWalkers.Where(x => x.CityId == vm.CityId).ToList();
                 return Ok(model);
             }
         }

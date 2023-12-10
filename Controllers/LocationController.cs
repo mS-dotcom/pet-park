@@ -53,7 +53,7 @@ public class LocationController : ControllerBase
     {
         try
         {
-            var cities = _db.Cities.ToList();
+            var cities = _db.UserCities.ToList();
             return Ok(cities);
         }
         catch (Exception ex)
@@ -73,7 +73,7 @@ public class LocationController : ControllerBase
     {
         try
         {
-            var districts = _db.Districts.Where(x => x.CityId == CityId).ToList().OrderByDescending(x=>x.Name).Reverse().ToList();
+            var districts = _db.UserDistricts.Where(x => x.CityId == CityId).ToList().OrderByDescending(x=>x.Name).Reverse().ToList();
             return Ok(districts);
         }
         catch (Exception ex)

@@ -28,7 +28,7 @@ public class AdvertController : ControllerBase
     {
         try
         {
-            
+                advert.LastDate = DateTime.Now.AddDays(15);       
                 _db.Adverts.Add(advert);
                 _db.SaveChanges();
             
@@ -113,9 +113,31 @@ public class AdvertController : ControllerBase
             return BadRequest(ex);
         }
     }
+
+    [HttpGet("MyAdverts")]
+    public IActionResult MyAdverts(int userId)
+    {
+        try
+        {
+            var myAds = _db.Adverts.Where(x => x.UserId == userId&&x.LastDate>DateTime.Now).ToList();
+            return Ok(myAds);
+        }
+        catch (Exception ex)
+        {
+            Log log = new Log();
+            log.DateTime = DateTime.Now;
+            log.LogDescription = ex.Message;
+            log.LogType = "Adverts";
+            _db.Logs.Add(log);
+            _db.SaveChanges();
+            return BadRequest(ex);
+        }
+    }
+
     [HttpPost("Adverts")]
     public IActionResult Adverts(Search search)
     {
+        
         try
         {
             if (search.cityId != 0 && search.cityId != null)
@@ -123,7 +145,7 @@ public class AdvertController : ControllerBase
 
                 if (search.districtId != 0 && search.districtId != null)
                 {
-                    var allAdvertsOnlyCityAndDistrict = _db.Adverts
+                    var allAdvertsOnlyCityAndDistrict = _db.Adverts.Where(x => x.LastDate > DateTime.Now).ToList()
                     .Where(x => x.CityId == search.cityId && x.DistrictId == search.districtId)
                     .Skip(((int)search.PageNumber - 1) * (int)search.PageSize)
                     .Take((int)search.PageSize)
@@ -133,7 +155,7 @@ public class AdvertController : ControllerBase
                 }
                 else
                 {
-                    var allAdvertsOnlyCity = _db.Adverts
+                    var allAdvertsOnlyCity = _db.Adverts.Where(x => x.LastDate > DateTime.Now).ToList()
                    .Where(x => x.CityId == search.cityId)
                    .Skip(((int)search.PageNumber - 1) * (int)search.PageSize)
                    .Take((int)search.PageSize)
@@ -144,7 +166,7 @@ public class AdvertController : ControllerBase
             }
             else
             {
-                var allAdvertsWithoutLocation = _db.Adverts
+                var allAdvertsWithoutLocation = _db.Adverts.Where(x => x.LastDate > DateTime.Now).ToList()
                     .ToList()
                   .Skip(((int)search.PageNumber - 1) * (int)search.PageSize)
                   .Take((int)search.PageSize)
@@ -162,6 +184,32 @@ public class AdvertController : ControllerBase
             _db.SaveChanges();
             return BadRequest(ex);
         }
+    }
+    [HttpGet("MakePrivate")]
+    public IActionResult MakePrivate(int AdvertId,int HowManyDays)
+    {
+        try
+        {
+            var advert = _db.Adverts.FirstOrDefault(x => x.AdvertId == AdvertId);
+            DateTime last = advert.LastDate;
+            
+            advert.LastDate = last.AddDays(HowManyDays);
+            advert.IsPrimary = true;
+            _db.SaveChanges();
+            return Ok(advert);
+        }
+        catch (Exception ex)
+        {
+            Log log = new Log();
+            log.DateTime = DateTime.Now;
+            log.LogDescription = ex.Message;
+            log.LogType = "MakePrivate";
+
+            _db.Logs.Add(log);
+            _db.SaveChanges();
+            return BadRequest(ex.Message);
+        }
+        
     }
     [HttpGet("AdvertDetail")]
     public IActionResult AdvertDetail(int AdvertId)

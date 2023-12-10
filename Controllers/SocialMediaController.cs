@@ -122,6 +122,8 @@ public class SocialMediaController : ControllerBase
     {
         try
         {
+            
+            
             DateTime yesterday = DateTime.Now.AddHours(-18);
             var Posts =  _db.Posts.Where(x => x.datetime > yesterday).Skip(((int)search.PageNumber - 1) * (int)search.PageSize)
                         .Take((int)search.PageSize)
@@ -133,8 +135,10 @@ public class SocialMediaController : ControllerBase
                 PostDetailVM post = new PostDetailVM();
                 post.PostText = item.PostText;
                 var likeCount = _db.Likes.Where(x => x.PostId == item.PostId).Count();
+                var commentCount = _db.Comments.Where(x => x.PostId == item.PostId).Count();
+                post.CommentCount = commentCount;
                 post.PostLikeCount = likeCount;
-                post.PostImage = item.PostImageUrl;
+                post.PostImageUrl = item.PostImageUrl;
                 post.PostId = item.PostId;
                 post.datetime = item.datetime;
                 var user = _db.Users.FirstOrDefault(x => x.UserId == item.UserId);
@@ -215,21 +219,67 @@ public class SocialMediaController : ControllerBase
             return BadRequest(ex);
         }
     }
+    [HttpGet("RandomPets")]
+    public IActionResult RandomPets(int sessionUserId)
+    {
+        try
+        {
+            
+            List<UserAnimalVM> vmList = new List<UserAnimalVM>();
+            var animals = _db.Animals.Where(x => x.UserId != sessionUserId && x.AnimalImageUrl != null && x.AnimalImageUrl != "").ToList();
+
+            if (animals.Count > 14)
+            {
+                animals = animals.TakeLast(15).ToList();
+            }
+
+
+            var users = _db.Users.ToList();
+            var sickness = _db.Sickess.ToList();
+            var vacs = _db.Vaccines.ToList();
+            foreach (var animal in animals)
+            {
+                UserAnimalVM vm = new UserAnimalVM();
+                var subUser = users.FirstOrDefault(x => x.UserId == animal.UserId);
+                vm.user = subUser;
+                vm.Animal = animal;
+
+                vm.Sicknesses = sickness.Where(x => x.AnimalId == animal.AnimalId).ToList();
+                vm.Vaccines = vacs.Where(x => x.AnimalId == animal.AnimalId).ToList();
+                vmList.Add(vm);
+            }
+            return Ok(vmList);
+        }
+        catch (Exception ex)
+        {
+            Log log = new Log();
+            log.DateTime = DateTime.Now;
+            log.LogDescription = ex.Message;
+            log.LogType = "RandomPets";
+            log.UserId = sessionUserId;
+            _db.Logs.Add(log);
+            _db.SaveChanges();
+            return BadRequest(ex);
+        }
+        
+        
+    }
     [HttpGet("PostDetail")]
     public IActionResult PostDetail(int postId,int userId)
     {
         try
         {
             var post = _db.Posts.FirstOrDefault(x => x.PostId == postId);
+            var ownerPostUserName = _db.Users.FirstOrDefault(x => x.UserId == post.UserId).Username;
             var user = _db.Users.FirstOrDefault(x => x.UserId == userId);
             PostDetailVM vm = new PostDetailVM();
             vm.PostId = post.PostId;
             vm.UserId = post.UserId;
-            vm.UserName = user.Username;
+            vm.UserName = ownerPostUserName;
             vm.OwnerPPUrl = user.ProfilePictureUrl;
             string ownerpp = _db.Users.FirstOrDefault(x => x.UserId == post.UserId).ProfilePictureUrl;
             vm.OwnerPPUrl = ownerpp;
-            vm.PostImage = post.PostImageUrl;
+            vm.PostImageUrl = post.PostImageUrl;
             vm.PostText = post.PostText;
             vm.datetime = post.datetime;
             int islikeow = _db.Likes.Where(x => x.UserId == userId && x.PostId == postId).ToList().Count();
@@ -244,11 +294,12 @@ public class SocialMediaController : ControllerBase
             int likeCount = _db.Likes.Where(x => x.PostId == postId).Count();
             vm.PostLikeCount = likeCount;
             var postComment = _db.Comments.Where(x => x.PostId == postId).ToList();
+            vm.CommentCount = postComment.ToList().Count();
             List<CommentVM> commentvms = new List<CommentVM>();
             foreach (var item in postComment)
             {
                 CommentVM cm = new CommentVM();
-                var userSub = _db.Users.FirstOrDefault(x => x.UserId == userId);
+                var userSub = _db.Users.FirstOrDefault(x => x.UserId == item.UserId);
                 cm.UserName=userSub.Username;
                 cm.UserPP=userSub.ProfilePictureUrl;
                 cm.UserId = item.UserId;
@@ -278,10 +329,10 @@ public class SocialMediaController : ControllerBase
     {
         try
         {
-            var myPosts = _db.Posts.Where(x => x.UserId == userId).Skip(((int)search.PageNumber - 1) * (int)search.PageSize)
-                    .Take((int)search.PageSize)
-                    .ToList();
-            List<PostDetailVM> myPostsx = new List<PostDetailVM>();
+            var myPosts = _db.Posts.Where(x => x.UserId == userId).ToList().OrderByDescending(x => x.datetime).Skip(((int)search.PageNumber - 1) * (int)search.PageSize)
+                    .Take((int)search.PageSize);
+                    
+            /*List<PostDetailVM> myPostsx = new List<PostDetailVM>();
 
             foreach (var item in myPosts)
             {
@@ -289,12 +340,12 @@ public class SocialMediaController : ControllerBase
                 vm.PostText = item.PostText;
                 int likeCount = _db.Likes.Where(x => x.PostId == item.PostId).Count();
                 vm.PostLikeCount = likeCount;
-                vm.PostImage = item.PostImageUrl;
+                vm.PostImageUrl = item.PostImageUrl;
                 string ownerpp = _db.Users.FirstOrDefault(x => x.UserId == item.UserId).ProfilePictureUrl;
                 vm.OwnerPPUrl = ownerpp;
                 
                 var postComment = _db.Comments.Where(x => x.PostId == item.PostId).ToList();
-            }
+            }*/
 
             return Ok(myPosts);
         }

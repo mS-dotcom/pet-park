@@ -28,6 +28,11 @@ public class ClinicController : ControllerBase
     {
         try
         {
+            Log log = new Log();
+            log.DateTime = DateTime.Now;
+            log.LogType = "ClinicCounter";
+            _db.Logs.Add(log);
+            _db.SaveChanges();
             if (search.cityId != 0 && search.cityId != null)
             {
 
@@ -55,7 +60,7 @@ public class ClinicController : ControllerBase
             else
             {
                 var allClinisWithoutLocation = _db.Clinics
-                  .Where(x => x.IsApproved == true)
+                  .Where(x => x.IsApproved == true&&x.LastDate>DateTime.Now)
                   .Skip(((int)search.PageNumber - 1) * (int)search.PageSize)
                   .Take((int)search.PageSize)
                   .ToList();
@@ -72,6 +77,12 @@ public class ClinicController : ControllerBase
             _db.SaveChanges();
             return BadRequest(ex);
         }
+    }
+    [HttpGet("GetAllClinics")]
+    public IActionResult GetAllClinics()
+    {
+        var allClinics = _db.Clinics.Where(x => x.IsApproved == true && x.Lat != null && x.Lat != "").ToList();
+        return Ok(allClinics);
     }
     [HttpGet("ClinicDetail")]
     public IActionResult ClinicDetail(int clinicId)
@@ -99,8 +110,14 @@ public class ClinicController : ControllerBase
     {
         try
         {
-            clinic.IsApproved = false;
+            var vet = _db.Veterinary.FirstOrDefault(x => x.VeteniaryId == clinic.VeterinaryId);
+            if (vet.HasPayment == true)
+            {
+                clinic.IsApproved = true;
+            }
+            clinic.LastDate = vet.LastDate;
             _db.Add(clinic);
+            vet.HasClinicPinned = true;
             _db.SaveChanges();
             return Ok(clinic);
         }

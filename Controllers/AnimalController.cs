@@ -155,12 +155,25 @@ public class AnimalController : ControllerBase
         }
     }
     [HttpGet("MyPets")]
-    public IActionResult MyPets(int userId)
+    public IActionResult MyPets(int userId,int userType)
     {
         try
         {
-            var mypets = _db.Animals.Where(x => x.UserId == userId).ToList();
-            return Ok(mypets);
+            if (userType == 1)
+            {
+                var mypets = _db.Animals.Where(x => x.UserId == userId).ToList();
+                return Ok(mypets);
+            }
+            else if (userType == 2)
+            {
+                var vet = _db.Veterinary.FirstOrDefault(x => x.userId == userId);
+                var mypets = _db.Animals.Where(x => x.VeterinaryId == vet.VeteniaryId).ToList();
+                return Ok(mypets);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
         catch (Exception ex)
         {
@@ -189,8 +202,8 @@ public class AnimalController : ControllerBase
             vm.Animal = animal;
             vm.Sickness = animalSick;
             vm.Vaccines = animalVaccines;
-            vm.user = user;
-            vm.veterinary = veterinary;
+            vm.UserAccount = user;
+            vm.VeterinaryAccount = veterinary;
             return Ok(vm);
         }
         catch (Exception ex)
@@ -212,10 +225,10 @@ public class AnimalController : ControllerBase
     {
         try
         {
-            string[] values = new string[4];
-            values = QRCode.Split('&');
+            
+            
 
-            var findAnimal = _db.Animals.FirstOrDefault(x => x.Name == values[0].ToString() && x.AnimalTypeId == Int32.Parse(values[1].ToString()) && x.AnimalId == Int32.Parse(values[2].ToString()) && x.UserId == Int32.Parse(values[3].ToString()));
+            var findAnimal = _db.Animals.FirstOrDefault(x=>x.QRCode==QRCode);
 
 
 
@@ -228,8 +241,8 @@ public class AnimalController : ControllerBase
             vm.Animal = findAnimal;
             vm.Sickness = animalSick;
             vm.Vaccines = animalVaccines;
-            vm.user = user;
-            vm.veterinary = veterinary;
+            vm.UserAccount = user;
+            vm.VeterinaryAccount = veterinary;
             return Ok(vm);
         }
         catch (Exception ex)
