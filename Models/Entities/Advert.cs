@@ -23,7 +23,9 @@ namespace perpark_api.Models.Entities
 		public bool? AnimalInfoShare { get; set; }
 
 		public int? AnimalId { get; set; }
+        public DateTime LastDate { get; set; }
+        public bool? IsPrimary { get; set; }
 
-	}
+    }
 }
 

@@ -14,8 +14,8 @@ namespace perpark_api.Models.Entities
         
         
         public int DistrictId { get; set; }
-        
 
+        public string? Address { get; set; }
         public string? Lat { get; set; }
         public string? Lng { get; set; }
     }

@@ -7,7 +7,7 @@ namespace perpark_api.Models.Entities
 	{
 		[Key]
 		public int LogId { get; set; }
-		public string LogDescription { get; set; }
+		public string? LogDescription { get; set; }
 		public int? UserId { get; set; }
 		public string LogType { get; set; }
 		public DateTime DateTime { get; set; }

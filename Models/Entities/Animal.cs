@@ -19,6 +19,7 @@ namespace perpark_api.Models.Entities
         public string? QRImage { get; set; }
         public int UserId { get; set; }
         public int? VeterinaryId { get; set; }
+        public string? AnimalImageUrl { get; set; }
 
     }
 }

@@ -11,11 +11,13 @@ namespace perpark_api.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            
+            optionsBuilder.UseSqlServer("");
         }
         public Microsoft.EntityFrameworkCore.DbSet<User> Users { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<City> Cities { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<UserCity> UserCities { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<District> Districts { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<UserDistrict> UserDistricts { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<Animal> Animals { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<AnimalType> AnimalType { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<UserType> UserTypes { get; set; }
@@ -31,6 +33,7 @@ namespace perpark_api.Models
         public Microsoft.EntityFrameworkCore.DbSet<Post> Posts { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<Like> Likes { get; set; }
         public Microsoft.EntityFrameworkCore.DbSet<UserFollowers> UserFollowers { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<ChatMessages> ChatMessages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

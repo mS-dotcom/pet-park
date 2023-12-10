@@ -1,3 +1,10 @@
+/Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/perpark-api.csproj.AssemblyReference.cache
+/Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/perpark-api.GeneratedMSBuildEditorConfig.editorconfig
+/Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/perpark-api.AssemblyInfoInputs.cache
+/Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/perpark-api.AssemblyInfo.cs
+/Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/perpark-api.csproj.CoreCompileInputs.cache
+/Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/perpark-api.MvcApplicationPartsAssemblyInfo.cs
+/Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/perpark-api.MvcApplicationPartsAssemblyInfo.cache
 /Users/muhammedseker/Projects/petpark/perpark-api/bin/Debug/net6.0/appsettings.Development.json
 /Users/muhammedseker/Projects/petpark/perpark-api/bin/Debug/net6.0/appsettings.json
 /Users/muhammedseker/Projects/petpark/perpark-api/bin/Debug/net6.0/perpark-api.staticwebassets.runtime.json
@@ -85,13 +92,6 @@
 /Users/muhammedseker/Projects/petpark/perpark-api/bin/Debug/net6.0/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
 /Users/muhammedseker/Projects/petpark/perpark-api/bin/Debug/net6.0/runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll
 /Users/muhammedseker/Projects/petpark/perpark-api/bin/Debug/net6.0/runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll
-/Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/perpark-api.csproj.AssemblyReference.cache
-/Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/perpark-api.GeneratedMSBuildEditorConfig.editorconfig
-/Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/perpark-api.AssemblyInfoInputs.cache
-/Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/perpark-api.AssemblyInfo.cs
-/Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/perpark-api.csproj.CoreCompileInputs.cache
-/Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/perpark-api.MvcApplicationPartsAssemblyInfo.cs
-/Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/perpark-api.MvcApplicationPartsAssemblyInfo.cache
 /Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/staticwebassets/msbuild.perpark-api.Microsoft.AspNetCore.StaticWebAssets.props
 /Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/staticwebassets/msbuild.build.perpark-api.props
 /Users/muhammedseker/Projects/petpark/perpark-api/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.perpark-api.props

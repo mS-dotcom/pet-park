@@ -4,13 +4,15 @@ using perpark_api.Models.Entities;
 
 namespace perpark_api.DevelopmentClasses
 {
-	public class AnimalDetailVM
+	public class UserAnimalVM
 	{
+		public User user { get; set; }
+
 		public Animal Animal { get; set; }
+
 		public List<Vaccine> Vaccines { get; set; }
-        public List<Sickness> Sickness { get; set; }
-		public User UserAccount { get; set; }
-		public Veterinary VeterinaryAccount { get; set; }
-    }
+
+		public List<Sickness>Sicknesses { get; set; }
+	}
 }
 

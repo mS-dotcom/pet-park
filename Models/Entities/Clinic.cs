@@ -22,6 +22,14 @@ namespace perpark_api.Models.Entities
 
 		public bool? IsApproved { get; set; }
 
+		public string? Lat { get; set; }
+
+		public string? Lng { get; set; }
+
+		public string? Level { get; set; }
+
+		public DateTime? LastDate { get; set; }
+
 	}
 }
 

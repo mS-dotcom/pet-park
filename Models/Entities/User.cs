@@ -22,5 +22,8 @@ namespace perpark_api.Models
 		public string? Lat { get; set; }
         public string? Lng { get; set; }
         public int UserTypeId { get; set; }
+		public string? ClinicName { get; set; }
+        public string? ClinicPhone { get; set; }
+		public string? Token { get; set; }
 	}
 }
